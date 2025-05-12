@@ -2,11 +2,12 @@ import pandas as pd
 import matplotlib.pylot as plt
 import seaborn as sns
 from pathlib import Path
+from utils.data_loader import load_data
+
 
 DATA_PATH = Path("data/raw/bootcamp_train.csv")
 
-def load_data(path):
-    return pd.read_csv(path)
+
 
 def show_basic_info(df):
 
