@@ -29,8 +29,8 @@ steel-defect-classifier/
 ├── results/ # Métricas e gráficos
 ├── figs_ovr/ # Imagens de métricas e matrizes de confusão
 ├── src/
-│ ├── app.py # Aplicação principal em Streamlit
 │ └── utils/ # Scripts auxiliares
+├── app.py # Aplicação principal em Streamlit
 ├── docs/ # Imagens e materiais para documentação
 └── README.md
 ```
@@ -53,27 +53,29 @@ conda activate steell-classfier-env
 
 ### Execute o app:
 
-bash
-Copiar
-Editar
-streamlit run src/app.py
-📈 Resultados
-Utilizou-se Random Forest com estratégia One-vs-Rest para multirrótulo.
+```bash
+streamlit run app.py
+```
 
-Dados divididos em treino/teste com avaliação por métricas de precisão, recall, F1-score e matriz de confusão.
+## 📈 Resultados
 
-Classes com maior representação obtiveram melhor performance.
+- Utilizou-se Random Forest com estratégia One-vs-Rest para multirrótulo.
 
-Falhas com menos dados mostraram menor desempenho, indicando necessidade de balanceamento.
+- Dados divididos em treino/teste com avaliação por métricas de precisão, recall, F1-score e matriz de confusão.
 
-✅ Próximos Passos
-Aumentar a amostra de falhas menos frequentes.
+- Classes com maior representação obtiveram melhor performance.
 
-Testar técnicas de balanceamento como SMOTE.
+- Falhas com menos dados mostraram menor desempenho, indicando necessidade de balanceamento.
 
-Avaliar modelos alternativos como XGBoost e LightGBM.
+## ✅ Próximos Passos
 
-Otimizar hiperparâmetros com GridSearch ou RandomSearch.
+- Aumentar a amostra de falhas menos frequentes.
+
+- Testar técnicas de balanceamento como SMOTE.
+
+- Avaliar modelos alternativos como XGBoost e LightGBM.
+
+- Otimizar hiperparâmetros com GridSearch ou RandomSearch.
 
 ✍️ Autor
 Daniel do Amaral Denardi - @dandenardi
