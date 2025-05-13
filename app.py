@@ -6,16 +6,16 @@ import matplotlib.pyplot as plt
 import joblib
 import seaborn as sns
 from pathlib import Path
-from utils.data_loader import load_data, load_model
+from src.utils.data_loader import load_data, load_model
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent  # sobe da pasta src para a raiz
+BASE_DIR = Path(__file__).resolve().parent  # sobe da pasta src para a raiz
 RESULTS_PATH = BASE_DIR / "results" / "resultados_ovr.csv"
 
-RAW_DATA = Path("../data/raw/bootcamp_train.csv")
-DATA_PATH = Path('../data/processed/cleaned_data.csv')
-MODEL_PATH = Path("/models/random_forest_model.pkl")
-FIGS_DIR = BASE_DIR / "figs_ovr"
+RAW_DATA = BASE_DIR / "data" / "raw" / "bootcamp_train.csv"
+DATA_PATH = BASE_DIR / "data" / "processed" / "cleaned_data.csv"
+MODEL_PATH = BASE_DIR / "models" / "random_forest_model.pkl"
+FIGS_DIR = BASE_DIR / "src" / "figs_ovr"
 
 image_path = BASE_DIR / "assets" / "unisenai.jpeg"
 image = Image.open(image_path)
@@ -156,10 +156,10 @@ st.image(chart_path, caption=f"Métrica: {metric_option.upper()} for falha", use
 
 st.subheader("Matriz de Confusão por Classe")
 selected_class = st.selectbox("Selecione uma classe de falha:", results_df["falha"].tolist())
-cm_path = f"figs_ovr/confusion_matrix_{selected_class}.png"
+cm_path = FIGS_DIR / f"confusion_matrix_{selected_class}.png"
 
-if os.path.exists(cm_path):
-    st.image(cm_path, caption=f"Matriz de Confusão - {selected_class}", use_container_width=False)
+if cm_path.exists():
+    st.image(str(cm_path), caption=f"Matriz de Confusão - {selected_class}", use_container_width=False)
 else:
     st.warning("Imagem da matriz não encontrada.")
 
