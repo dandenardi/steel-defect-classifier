@@ -57,6 +57,12 @@ conda activate steell-classfier-env
 streamlit run app.py
 ```
 
+## Como consultar online
+
+O projeto também está disponível na web através do link:
+
+[Streamlit - Classificador de defeitos](https://steel-defect-classifier-juxghqkvb8dkntfruwuzjb.streamlit.app/)
+
 ## 📈 Resultados
 
 - Utilizou-se Random Forest com estratégia One-vs-Rest para multirrótulo.
