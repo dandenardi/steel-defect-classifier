@@ -12,10 +12,10 @@ build/
 .ipynb_checkpoints/
 
 # Dados
-
-*.csv
 *.tsv
 *.xlsx
+!data/raw/bootcamp_train.csv
+!data/processed/cleaned_data.csv
 
 # Virtual environments
 venv/
