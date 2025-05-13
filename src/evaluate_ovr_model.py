@@ -1,10 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.multiclass import OneVsRestClassifier
-from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score, multilabel_confusion_matrix
+
 
 df = pd.read_csv("../data/processed/cleaned_data.csv")
 X = df.drop(columns=[col for col in df.columns if col.startswith("falha_")])
@@ -49,3 +51,17 @@ for metric in ["accuracy", "precision", "recall", "f1"]:
     plt.savefig(output_dir / f"{metric}_ovr.png")
     plt.close()
     print(f"Gráfico {metric.upper()} salvo em {output_dir}/{metric}_ovr.png")
+
+conf_matrices = multilabel_confusion_matrix(y_test, y_pred)
+
+for i, col in enumerate(y.columns):
+    cm = conf_matrices[i]
+    plt.figure(figsize=(4,3))
+    sns.heatmap(cm, annot=True, fmt='d', cmap="Blues", xticklabels=["0", "1"], yticklabels=["0", "1"])
+    plt.title(f'Matriz de Confusão - {col}')
+    plt.xlabel('Previsto')
+    plt.ylabel('Real')
+    plt.tight_layout()
+    plt.savefig(output_dir / f'confusion_matrix_{col}.png')
+    plt.close()
+    print(f"Matriz de confusão salva: {output_dir}/confusion_matrix_{col}.png")
